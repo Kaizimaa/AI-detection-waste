@@ -20,7 +20,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     try {
-      const apiUrl= process.env.NEXT_PUBLIC_URL_API || 'https://localhost:5000';
+      const apiUrl= process.env.NEXT_PUBLIC_URL_API;
       
       // Kirim gambar ke Python backend
       const response = await fetch(`${apiUrl}/detect`, {
