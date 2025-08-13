@@ -20,11 +20,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     try {
-      // Konfigurasi Python backend
-      const PYTHON_BACKEND_URL = process.env.PYTHON_BACKEND_URL || 'http://localhost:5000';
+      const apiUrl= process.env.NEXT_PUBLIC_URL_API || 'https://localhost:5000';
       
       // Kirim gambar ke Python backend
-      const response = await fetch(`${PYTHON_BACKEND_URL}/detect`, {
+      const response = await fetch(`${apiUrl}/detect`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
