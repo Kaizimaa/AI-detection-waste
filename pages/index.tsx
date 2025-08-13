@@ -331,41 +331,42 @@ useEffect(() => {
             <div className="space-y-6">
               {/* Preview Section */}
               {imageSrc && (
-                <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-gray-200 p-6">
-                  <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-                    <span className="mr-2">🖼️</span>
-                    Pratinjau Gambar
-                  </h2>
-                  
-                  <div className="space-y-4">
-                    <div className="relative bg-gray-100 rounded-2xl overflow-hidden">
-                      <img
-                        src={imageSrc}
-                        alt="Gambar untuk deteksi"
-                        className="w-full h-auto max-h-96 object-contain"
-                      />
-                      <button
-                        onClick={resetDetection}
-                        className="absolute top-4 right-4 p-2 bg-red-500 text-white rounded-full hover:bg-red-600 transition-all duration-200 shadow-lg"
-                        title="Hapus gambar"
-                      >
-                        ✕
-                      </button>
-                    </div>
-                    
-                    {isLoading ? (
-                        <LoadingSpinner message="Mendeteksi sampah anorganik..." />
-                      ) : (
-                        <button
-                          disabled
-                          className="w-full px-6 py-4 bg-gradient-to-r from-purple-400 to-purple-500 text-white rounded-xl cursor-not-allowed opacity-60"
-                        >
-                          🔍 Deteksi Sampah Anorganik
-                        </button>
-                      )}
-                  </div>
-                </div>
-              )}
+  <div className="hidden md:block bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-gray-200 p-6">
+    <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
+      <span className="mr-2">🖼️</span>
+      Pratinjau Gambar
+    </h2>
+
+    <div className="space-y-4">
+      <div className="relative bg-gray-100 rounded-2xl overflow-hidden">
+        <img
+          src={imageSrc}
+          alt="Gambar untuk deteksi"
+          className="w-full h-auto max-h-96 object-contain"
+        />
+        <button
+          onClick={resetDetection}
+          className="absolute top-4 right-4 p-2 bg-red-500 text-white rounded-full hover:bg-red-600 transition-all duration-200 shadow-lg"
+          title="Hapus gambar"
+        >
+          ✕
+        </button>
+      </div>
+
+      {isLoading ? (
+        <LoadingSpinner message="Mendeteksi sampah anorganik..." />
+      ) : (
+        <button
+          disabled
+          className="w-full px-6 py-4 bg-gradient-to-r from-purple-400 to-purple-500 text-white rounded-xl cursor-not-allowed opacity-60"
+        >
+          🔍 Deteksi Sampah Anorganik
+        </button>
+      )}
+    </div>
+  </div>
+)}
+
 
               {/* Results Section */}
               {result && (
