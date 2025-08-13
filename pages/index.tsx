@@ -263,15 +263,13 @@ useEffect(() => {
                   )}
 
                   <div className="relative bg-gray-100 rounded-2xl overflow-hidden">
-                    <div className="w-full h-auto aspect-video sm:aspect-video">
-                      <video
-                        ref={videoRef}
-                        autoPlay
-                        muted
-                        playsInline
-                        className="w-full h-full object-contain bg-black"
-                      />
-                    </div>
+                    <video
+                      ref={videoRef}
+                      autoPlay
+                      muted
+                      playsInline
+                      className="camera-video bg-black"
+                    />
 
                     {!isCameraActive && (
                       <div className="absolute inset-0 flex items-center justify-center bg-gray-200">
