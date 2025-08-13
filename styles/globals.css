@@ -1,1 +1,15 @@
 @import "tailwindcss";
+
+@media (orientation: portrait) {
+  video {
+    height: 100% !important;
+    width: auto !important;
+  }
+}
+
+@media (orientation: landscape) {
+  video {
+    width: 100% !important;
+    height: auto !important;
+  }
+}

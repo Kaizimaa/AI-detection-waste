@@ -263,7 +263,7 @@ useEffect(() => {
                   )}
 
                   <div className="relative bg-gray-100 rounded-2xl overflow-hidden">
-                    <div className="aspect-video w-full">
+                    <div className="w-full h-auto aspect-video sm:aspect-video">
                       <video
                         ref={videoRef}
                         autoPlay
@@ -272,6 +272,7 @@ useEffect(() => {
                         className="w-full h-full object-contain bg-black"
                       />
                     </div>
+
                     {!isCameraActive && (
                       <div className="absolute inset-0 flex items-center justify-center bg-gray-200">
                         <div className="text-center text-gray-500">
@@ -280,6 +281,7 @@ useEffect(() => {
                         </div>
                       </div>
                     )}
+
                     {isCameraActive && (
                       <button
                         onClick={handleCapture}
