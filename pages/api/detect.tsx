@@ -14,13 +14,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const { image } = req.body;
 
     if (!image) {
-      return res.status(400).json({ 
-        error: "Tidak ada gambar yang dikirim" 
+      return res.status(400).json({
+        error: "Tidak ada gambar yang dikirim"
       });
     }
 
     try {
-      const apiUrl= process.env.NEXT_PUBLIC_URL_API;
+      const apiUrl= process.env.NEXT_PUBLIC_URL_API || "http://127.0.0.1:5000";
       
       // Kirim gambar ke Python backend
       const response = await fetch(`${apiUrl}/detect`, {
@@ -54,43 +54,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     } catch (error) {
       console.error("Error in detection:", error);
       
-      // Fallback ke simulasi jika Python backend tidak tersedia
-      if (error instanceof Error && error.message.includes('Python backend error')) {
-        console.log("Python backend tidak tersedia, menggunakan simulasi...");
-        
-        const mockDetections = [
-          {
-            class: "Botol Plastik",
-            confidence: 0.95,
-            bbox: [100, 150, 200, 300]
-          },
-          {
-            class: "Kaleng Aluminium", 
-            confidence: 0.87,
-            bbox: [300, 200, 400, 350]
-          }
-        ];
-
-        setTimeout(() => {
-          res.status(200).json({
-            success: true,
-            detections: mockDetections,
-            message: "Deteksi sampah anorganik (simulasi) - Python backend tidak tersedia",
-            timestamp: new Date().toISOString(),
-            processing_time: 1.2,
-            model_info: "Simulation Mode"
-          });
-        }, 1000);
-      } else {
-        res.status(500).json({ 
-          error: "Terjadi kesalahan dalam proses deteksi",
-          details: error instanceof Error ? error.message : "Unknown error"
-        });
-      }
+      res.status(500).json({
+        error: "Terjadi kesalahan dalam proses deteksi",
+        details: error instanceof Error ? error.message : "Unknown error"
+      });
     }
   } else {
-    res.status(405).json({ 
-      error: "Method not allowed" 
+    res.status(405).json({
+      error: "Method not allowed"
     });
   }
 }
